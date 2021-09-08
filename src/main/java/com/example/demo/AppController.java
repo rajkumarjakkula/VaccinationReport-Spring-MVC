@@ -1,13 +1,16 @@
 package com.example.demo;
 
 
-import java.awt.print.Printable;
 import java.util.ArrayList;
+import java.util.Optional;
 
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -48,7 +51,7 @@ public class AppController {
 			}
 		}
 		return mv;
-	}
+}
 
 	
 	@RequestMapping("login")
@@ -58,6 +61,7 @@ public class AppController {
 			System.out.println(mv);
 			mv.setViewName("login");
 			ArrayList<String> ids=new ArrayList<>();
+			System.out.println(interface1.findAll());
 			for(Registration user:interface1.findAll())
 			{
 				System.out.println(user.getId());
@@ -96,22 +100,46 @@ public class AppController {
 		return "vaccination";
 	}
 	
-	@RequestMapping("allDetails")
+	@GetMapping("allDetails")
 	public ModelAndView allDetails()
 	{
 		ModelAndView mv=new ModelAndView();
 		mv.setViewName("allDetails");
+//		Iterable<Person> users= personInterface.findAll();
+//		System.out.println(users);
+//		mv.addObject("users",users);
+//		return mv;
 		ArrayList<Person> users=new ArrayList<>();
-
+		
 		for(Person user:personInterface.findAll())
 		{
+			
 			System.out.println(user.getId());
 			users.add(user);
 		}
-		mv.addObject(users);
+		mv.addObject("users",users);
 		System.out.println(mv);
 		return mv;
 	}
-		
+	
+	@RequestMapping("delete")
+	public ModelAndView deletePost(String id) {
+		ModelAndView mView=new ModelAndView();
+		mView.setViewName("delete");
+		if(id!=null) {
+		personInterface.deleteById(id);
+		mView.setViewName("delete");
+		}
+		ArrayList<Person> users=new ArrayList<>();
+		for(Person user:personInterface.findAll())
+		{
+			
+			System.out.println(user.getId());
+			users.add(user);
+		}
+		mView.addObject("users",users);
+		return mView;
+   }
+	
 	
 }

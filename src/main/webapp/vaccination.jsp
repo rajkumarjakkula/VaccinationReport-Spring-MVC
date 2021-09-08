@@ -2,34 +2,9 @@
 <!DOCTYPE html>
 <html>
 
-<style>   
-Body {  
-  font-family: Calibri, Helvetica, sans-serif;  
-}  
-  
-input[type=submit]{
-		width: auto;   
-        padding: 10px 18px;  
-        margin: 10px 5px;  
-        color:white;
-        background-color:green;
-}
- input[type=text], input[type=password] {   
-        width: 100%;   
-        margin: 8px 0;  
-        padding: 12px 20px;   
-        display: inline-block;   
-        border: 2px solid green;   
-        box-sizing: border-box;   
-    }   
-     
- .container {   
-        padding: 25px;   
-        background-color: lightblue;  
-        max-width:440px;  
-        margin:auto;
-    }   
-</style>   
+<head>
+<link href="style.css" rel="stylesheet"/> 
+</head>   
 <body>    
 	<center> 
 	<h1> Student vaccination Form </h1> 
@@ -41,8 +16,13 @@ input[type=submit]{
             <input type="text" name="name" placeholder="Enter Name" required>  
             <label>ID : </label>
             <input type="text" name="id" placeholder="Enter ID" required>  
-              <label>Vaccination Status : </label>
-            <input type="text" name="status" placeholder="Enter ID" required>  
+              <label>Vaccination Status : </label><br>
+           <center> 
+            <input type="radio" id="status" name="status"  value="yes">
+        <label for="YES">Yes</label>
+        <br>
+        <input type="radio" id="status" name="status" value="no">
+        <label for="NO">No</label><br> </center>
             <center><input type="submit"/>   </center>
           
           

@@ -1,0 +1,54 @@
+Body {  
+  font-family: Calibri, Helvetica, sans-serif;  
+  background-color:#84ceeb;
+}  
+  
+ input[type=submit]{
+	 width: auto;   
+     padding: 10px 18px;  
+     margin: 10px 5px;  
+     color:white;
+     background-color:green;
+}
+
+ .styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    background-color:white;
+    text-align:center;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+    
+
+input[type=submit]:hover{
+	 width:auto;
+	 padding: 13px 20px;  
+     margin: 10px 5px;  
+     color:#000;
+     background-color:white;
+  /*    box-shadow:5px 5px 5px 5px grey; */
+     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+     transform:1s;
+        
+} 
+ input[type=text], input[type=password] {  
+        width: 100%;   
+        margin: 8px 0;  
+        padding: 12px 20px;   
+        display: inline-block;   
+        border: 2px solid green;
+        box-sizing: border-box;   
+ }   
+     
+ .container 
+ {   
+        padding: 25px;   
+        border:1px solid;
+        box-shadow:10px 5px 5px grey;
+        background-color: #fff; 
+        max-width:440px;  
+        margin:auto; 
+}   
