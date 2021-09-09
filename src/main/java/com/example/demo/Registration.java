@@ -3,6 +3,7 @@ package com.example.demo;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 public class Registration {
@@ -28,6 +29,4 @@ public class Registration {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
 }

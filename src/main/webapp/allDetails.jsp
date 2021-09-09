@@ -1,7 +1,12 @@
 <%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <!DOCTYPE html>
 <html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="style.css" rel="stylesheet"/>
+</head>
 <body>
+<%@include  file="navPage.html" %>
 <div class="container" align="center">
 <h1>All Students Vaccination Reports</h1>
 <%-- ${users.get(0).name}

@@ -4,6 +4,7 @@ package com.example.demo;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import org.apache.jasper.tagplugins.jstl.core.If;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,29 +22,27 @@ public class AppController {
 	@Autowired
 	PersonInterface personInterface;
 	
-	
 	@Autowired 
 	RegistrationInterface interface1;
 	
-		
 	@RequestMapping("register")
 	public ModelAndView register1(Registration register) {
 		ModelAndView mv = new ModelAndView();
 	//	System.out.println(mv+register.getId());
 		mv.setViewName("register");
-		if(register.getId()!=null) 
+		if(register.getId()!=null)
 		{
 			ArrayList<String> ids=new ArrayList<>();
 			for(Registration user:interface1.findAll())
 			{
 				ids.add(user.getId());
 			}
-			if(ids.contains(register.getId())) 
+			if(ids.contains(register.getId()))
 			{
 				mv.addObject("existuser","User already exists");
 				return mv;
 			}
-			else 
+			else
 			{
 				interface1.save(register);
 				mv.setViewName("redirect:/login");
@@ -60,27 +59,31 @@ public class AppController {
 		ModelAndView mv = new ModelAndView();
 			System.out.println(mv);
 			mv.setViewName("login");
-			ArrayList<String> ids=new ArrayList<>();
-			System.out.println(interface1.findAll());
-			for(Registration user:interface1.findAll())
-			{
-				System.out.println(user.getId());
-				ids.add(user.getId());
+			if(id!=null) {
+				ArrayList<String> ids=new ArrayList<>();
+				ArrayList<String> id1=new ArrayList<>();
+				System.out.println(interface1.findAll());
+				for(Registration user:interface1.findAll())
+				{
+					System.out.println(user.getId());
+					ids.add(user.getId());
+					id1.add(user.getPassword());
+				}
+				if(ids.contains(id) && id1.contains(password)) 
+				{
+					mv.setViewName("redirect:/home");
+					return mv;
+					
+				}
+				else
+				{
+					mv.addObject("Notexistuser","No User Available");
+					System.out.println(mv);
+					return mv;
+				}
 			}
-			if(ids.contains(id)) 
-			{
-			mv.setViewName("redirect:/home");
 			return mv;
-			}
-			else
-			{
-				mv.addObject("Notexistuser","No User Available");
-				System.out.println(mv);
-				return mv;
-			}
 	}
-	
-	
 	@RequestMapping("home")
 	public String homePage() 
 	{
@@ -130,6 +133,9 @@ public class AppController {
 		personInterface.deleteById(id);
 		mView.setViewName("delete");
 		}
+//		if(id==null){
+//			mView.setViewName("redirect:/delete");
+//		}
 		ArrayList<Person> users=new ArrayList<>();
 		for(Person user:personInterface.findAll())
 		{
